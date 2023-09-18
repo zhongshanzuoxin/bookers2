@@ -1,0 +1,39 @@
+@use '~bootstrap/scss/bootstrap';
+
+.container-fluid {
+  display: flex;
+}
+
+
+p {
+  display: inline-block;
+}
+.row {
+  display: flex;
+}
+
+th {
+  padding: 0.5em;
+}
+
+.edit {
+    width: 16em;
+  margin: 0 auto;
+  letter-spacing: 0.05em;
+  line-height: 2.0;
+}
+
+.form {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.table {
+  width: 100%;
+  
+}
+
+.Action {
+    border-left: 1px solid #999;
+}
+

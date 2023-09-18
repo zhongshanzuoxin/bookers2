@@ -1,0 +1,32 @@
+
+
+
+<div class="container">
+  <div class="edit">
+  <div class="row">
+    <div class="col-12">
+      <h2>User info</h2>
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>errors prohibited this book from being saved:
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+      </ul>
+      <% end %>
+      <%= form_with model: @user do |f| %>
+      <div for="inputName">Name</div>
+        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" %>
+      <div for="inputImage">Image</div>
+        <%= f.file_field :profile_image, placeholder:"プロフィール画像", accept:"image/*" %>
+      <div for="inputIntroduction">Introduction</div>
+        <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction" %>
+      <div class="form">
+        <%= f.submit "Update User", class: 'btn btn-secondary' %>
+      </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+

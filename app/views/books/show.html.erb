@@ -1,0 +1,61 @@
+
+<%= flash[:notice] %><%= flash[:update] %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+       <h2>User info</h2>
+       <%= image_tag @user.get_profile_image(100,100) %>
+       <table rules= "rows">
+         <tr></tr>
+         <tr>
+           <th>name</th>
+           <th><%= @user.name %></th>
+         </tr>
+         <tr>
+           <th>introduction</th>
+           <th><%= @user.introduction %></th>
+         </tr>
+       </table>
+       
+       <%= link_to edit_user_path(@user), class:'btn btn-outline-secondary btn-block' do %>
+         <i class="fas fa-user-cog"></i> 
+       <% end %>
+       
+       
+      <h2>New book</h2>
+        <%= form_with model: Book.new do |f| %>
+        <h5>Title</h5>
+        <%= f.text_field :title %>
+        <h5>Opinion</h5>
+        <%= f.text_area :body %>
+        <%= f.submit 'Create Book', class: 'btn btn-success' %>
+        <% end %>
+        </div>
+        <div class="col-md-8 offset-md-1">
+          <h2>Book detail</h2>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <%= image_tag @book.user.get_profile_image(100,100) %><br>
+                  <%= link_to user_path(@user.id) do %>
+                  <%= @book.user.name %>
+                  </td>
+                   <% end %>
+                <td>
+                  <%= link_to book_path(@book.id) do %>
+                  <%= @book.title %>
+                </td>
+                  <% end %>
+                <td><%= @book.body %></td>
+                <% if @book.user == current_user %>
+                <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
+                <td><%= link_to "Destroy", book_path(@book), class: "btn btn-danger", method: :delete, data: {confirm: "本当に消しますか？"} %></td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>

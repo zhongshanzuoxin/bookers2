@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/934169f86d.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-none">
+      <nav class="navbar navbar-expand navbar-dark bg-dark" >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Bookers</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビ切替">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-around" id="navbar">
+          <ul class="navbar-nav ">
+          <% if user_signed_in? %>
+
+          <%= link_to user_path(current_user.id), class: "btn btn-dark" do %>
+            <i class="fa-solid fa-home"></i>
+            Home
+            <% end %>
+
+          <%= link_to users_path, class: "btn btn-dark" do %>
+            <i class="fa-solid fa-users"></i>
+            Users
+            <% end %>
+
+          <%= link_to books_path, class: "btn btn-dark" do %>
+            <i class="fa-solid fa-book-open"></i>
+            Books
+            <% end %>
+
+          <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-dark" do %>
+            <i class="fa-solid fa-sign-out-alt"></i>
+            Log out
+            <% end %>
+
+
+          <% else %>
+
+          <%= link_to root_path, class: "btn btn-dark" do %>
+            <i class="fa-solid fa-home"></i>
+            Home
+            <% end %>
+
+          <%= link_to home_about_path, class: "btn btn-dark" do %>
+            <i class="fa-solid fa-link"></i>
+            About
+            <% end %>
+
+          <%= link_to new_user_registration_path, class: "btn btn-dark" do %>
+            <i class="fa-solid fa-user-plus"></i>
+            Sign up
+            <% end %>
+
+          <%= link_to new_user_session_path, class: "btn btn-dark" do %>
+            <i class="fa-solid fa-sign-in-alt"></i>
+            Log in
+            <% end %>
+
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <%= yield %>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="m-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
